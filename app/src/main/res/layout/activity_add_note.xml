@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".AddNoteActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textViewNoteTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16sp"
+        android:layout_marginTop="8sp"
+        android:layout_marginRight="16sp"
+        android:hint="Note Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <EditText
+        android:id="@+id/editTextNoteContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="null"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Note Content"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNoteTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewNoteTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNoteTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
