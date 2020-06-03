@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        Reference and set up toolbar
-        mToolbar = findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbarSecondActivity);
         setSupportActionBar(mToolbar);
 //        References for the RecyclerView
         mRecyclerView = findViewById(R.id.listOfNotes);

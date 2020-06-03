@@ -7,7 +7,7 @@
     tools:context=".AddNoteActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarSecondActivity"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textViewNoteTitle"
+        android:id="@+id/editTextNoteTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16sp"
@@ -24,7 +24,7 @@
         android:hint="Note Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarSecondActivity" />
 
     <EditText
         android:id="@+id/editTextNoteContent"
@@ -36,8 +36,8 @@
         android:hint="Note Content"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textViewNoteTitle"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNoteTitle"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewNoteTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNoteTitle" />
+        app:layout_constraintStart_toStartOf="@+id/editTextNoteTitle"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNoteTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
