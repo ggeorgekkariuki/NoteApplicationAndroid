@@ -8,6 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.util.Calendar;
+
 public class AddNoteActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
@@ -46,5 +48,22 @@ public class AddNoteActivity extends AppCompatActivity {
 
             }
         });
+
+//        Get the time and date for the Note Display
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = formatDateOrTime(calendar.get(Calendar.DAY_OF_WEEK)) + "/"
+                + formatDateOrTime(calendar.get(Calendar.MONTH)+1) + "/"
+                + calendar.get(Calendar.YEAR);
+        String currentTime = formatDateOrTime(calendar.get(Calendar.HOUR)) + ":"
+                + formatDateOrTime(calendar.get(Calendar.MINUTE));
     }
+
+    public String formatDateOrTime(int time){
+        if (time < 10){
+            return "0" + time;
+        } else{
+            return String.valueOf(time);
+        }
+    }
+
 }
