@@ -8,6 +8,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSecondActivity"
+        android:background="@color/colorPrimaryDark"
+        app:titleTextColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
