@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        This method handles the clicks that happen within the Menu
         if(item.getItemId() == R.id.add_menu_item){
+//            Starting the AddNoteActivity
+            Intent intent = new Intent(this, AddNoteActivity.class);
+            startActivity(intent);
             Toast.makeText(this, item.getTitle() + " button was clicked",
                     Toast.LENGTH_LONG).show();
         }
