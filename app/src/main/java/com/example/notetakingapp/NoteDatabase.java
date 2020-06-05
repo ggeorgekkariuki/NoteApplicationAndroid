@@ -100,7 +100,8 @@ public class NoteDatabase extends SQLiteOpenHelper {
                 KEY_ID+"?", new String[]{(String.valueOf(id))},
                 null, null, null);
 //        The Cursor object always starts at the position -1. Move it to the first position
-        cursor.moveToFirst();
+        if (cursor != null)
+            cursor.moveToFirst();
 
 //        Create a new Note object (using a constructor in Note.class)
 //        Pass the data we have just read from the database via the cursor.
