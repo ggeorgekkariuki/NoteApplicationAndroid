@@ -2,6 +2,7 @@ package com.example.notetakingapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -84,5 +85,26 @@ public class NoteDatabase extends SQLiteOpenHelper {
         long ID = sqLiteDatabase.insert(DATABASE_TABLE, null, contentValues);
 
         return ID;
+    }
+
+    public Note getNote(long id){
+        /*
+        This method returns a single note
+         */
+//        Get an instance of the Database and Read From it.
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+//        A cursor object is a pointer that looks at a row in a database.
+//        To Read from a database we need to run "SELECT * FROM TABLE NAME WHERE ID=id"
+        Cursor cursor = sqLiteDatabase.query(DATABASE_TABLE,
+                new String[]{KEY_ID, KEY_TITLE, KEY_CONTENT, KEY_DATE, KEY_TIME},
+                KEY_ID+"?", new String[]{(String.valueOf(id))},
+                null, null, null);
+//        The Cursor object always starts at the position -1. Move it to the first position
+        cursor.moveToFirst();
+
+//        Create a new Note object (using a constructor in Note.class)
+//        Pass the data we have just read from the database via the cursor.
+        return new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2),
+                cursor.getString(3), cursor.getString(4));
     }
 }
