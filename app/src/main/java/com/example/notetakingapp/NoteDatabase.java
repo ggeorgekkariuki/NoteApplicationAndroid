@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.Nullable;
 
 public class NoteDatabase extends SQLiteOpenHelper {
@@ -107,5 +110,36 @@ public class NoteDatabase extends SQLiteOpenHelper {
 //        Pass the data we have just read from the database via the cursor.
         return new Note(cursor.getLong(0), cursor.getString(1), cursor.getString(2),
                 cursor.getString(3), cursor.getString(4));
+    }
+
+    public List<Note> getNotes(){
+        /*
+        This method returns a list of all the notes in the database
+         */
+//        Instantiate the SQLDatabase and read from it
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+//        Create a List to store all the Notes that will be produced
+        List<Note> listNotes = new ArrayList<>();
+//        Create a RAW SQL Query to read all items in the database
+        String rawQuery = "SELECT * FROM " + DATABASE_TABLE;
+//        Use a cursor to obtain all the rows
+        Cursor cursor = sqLiteDatabase.rawQuery(rawQuery, null);
+//        Ensure cursor is not null
+        do {
+//            Create a new Note with no arguments and manually feed the data into the Note object
+            Note note = new Note();
+//            Manually feed the note items
+            note.setId(cursor.getLong(0));
+            note.setTitle(cursor.getString(1));
+            note.setContent(cursor.getString(2));
+            note.setDate(cursor.getString(3));
+            note.setTime(cursor.getString(4));
+
+//            Feed the new note to the list
+            listNotes.add(note);
+        } while (cursor != null);
+
+//        Return the list with all the Notes
+        return listNotes;
     }
 }
