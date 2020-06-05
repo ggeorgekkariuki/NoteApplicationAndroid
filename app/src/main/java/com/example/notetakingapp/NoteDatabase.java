@@ -124,10 +124,8 @@ public class NoteDatabase extends SQLiteOpenHelper {
         String rawQuery = "SELECT * FROM " + DATABASE_TABLE;
 //        Use a cursor to obtain all the rows
         Cursor cursor = sqLiteDatabase.rawQuery(rawQuery, null);
-//        Ensure cursor is not null
-        if (cursor!=null){
-//            Move the cursor to the First position i.e 0 i.e. the first row
-            cursor.moveToFirst();
+//        If cursor is null - move to first anyway
+        if (cursor.moveToFirst()){
 
             do {
 //            Create a new Note with no arguments and manually feed the data into the Note object
