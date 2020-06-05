@@ -125,19 +125,24 @@ public class NoteDatabase extends SQLiteOpenHelper {
 //        Use a cursor to obtain all the rows
         Cursor cursor = sqLiteDatabase.rawQuery(rawQuery, null);
 //        Ensure cursor is not null
-        do {
-//            Create a new Note with no arguments and manually feed the data into the Note object
-            Note note = new Note();
-//            Manually feed the note items
-            note.setId(cursor.getLong(0));
-            note.setTitle(cursor.getString(1));
-            note.setContent(cursor.getString(2));
-            note.setDate(cursor.getString(3));
-            note.setTime(cursor.getString(4));
+        if (cursor!=null){
+//            Move the cursor to the First position i.e 0 i.e. the first row
+            cursor.moveToFirst();
 
+            do {
+//            Create a new Note with no arguments and manually feed the data into the Note object
+                Note note = new Note();
+//            Manually feed the note items
+                note.setId(cursor.getLong(0));
+                note.setTitle(cursor.getString(1));
+                note.setContent(cursor.getString(2));
+                note.setDate(cursor.getString(3));
+                note.setTime(cursor.getString(4));
 //            Feed the new note to the list
-            listNotes.add(note);
-        } while (cursor != null);
+                listNotes.add(note);
+
+            } while (cursor.moveToNext());
+        }
 
 //        Return the list with all the Notes
         return listNotes;
