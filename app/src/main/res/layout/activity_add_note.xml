@@ -8,12 +8,13 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSecondActivity"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         app:titleTextColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText

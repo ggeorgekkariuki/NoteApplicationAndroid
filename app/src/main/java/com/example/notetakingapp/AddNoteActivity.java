@@ -1,11 +1,15 @@
 package com.example.notetakingapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import java.util.Calendar;
@@ -20,9 +24,12 @@ public class AddNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
 //        Set toolbar for second activity
         mToolbar = findViewById(R.id.toolbarSecondActivity);
+//        Change text color to white
 //        Display the toolbar
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("New Note");
+//        Display a back button the app bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        References to the EditTexts in the layout
         mEditTextNoteTitle = findViewById(R.id.editTextNoteTitle);
@@ -65,5 +72,4 @@ public class AddNoteActivity extends AppCompatActivity {
             return String.valueOf(time);
         }
     }
-
 }
