@@ -85,21 +85,25 @@ public class AddNoteActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.save_menu_item){
+        switch (item.getItemId()){
+            case (R.id.save_menu_item):
 //            Create a NEW NOTE (using the constructor from Note.class)
 //            Store the data from the User interface - Title, Content, Date and Time
-            Note note = new Note(mEditTextNoteTitle.getText().toString(),
-                    mEditTextNoteContent.getText().toString(),
-                    mCurrentDate, mCurrentTime);
+                Note note = new Note(mEditTextNoteTitle.getText().toString(),
+                        mEditTextNoteContent.getText().toString(),
+                        mCurrentDate, mCurrentTime);
 //            Create an instance of the NoteDatabase class and use the 'addNote' method which takes in 1 argument - a NOTE
-            NoteDatabase noteDatabase = new NoteDatabase(this);
-            noteDatabase.addNote(note);
+                NoteDatabase noteDatabase = new NoteDatabase(this);
+                noteDatabase.addNote(note);
 //            After saving the note, go back to the MainActivity
-            onBackPressed();
-
-        } else {
-//            Delete the data
+                onBackPressed();
+                break;
+            case(R.id.delete_menu_item):
+//                After deleting the note, go back to the main activity
+                onBackPressed();
+                break;
         }
+//
         return super.onOptionsItemSelected(item);
     }
 
