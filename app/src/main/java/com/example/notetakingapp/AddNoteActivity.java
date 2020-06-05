@@ -94,10 +94,18 @@ public class AddNoteActivity extends AppCompatActivity {
 //            Create an instance of the NoteDatabase class and use the 'addNote' method which takes in 1 argument - a NOTE
             NoteDatabase noteDatabase = new NoteDatabase(this);
             noteDatabase.addNote(note);
+//            After saving the note, go back to the MainActivity
+            onBackPressed();
 
         } else {
 //            Delete the data
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+//        This method goes back to the Parent activity
+        super.onBackPressed();
     }
 }
