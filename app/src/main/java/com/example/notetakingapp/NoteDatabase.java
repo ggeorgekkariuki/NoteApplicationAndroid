@@ -1,5 +1,6 @@
 package com.example.notetakingapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -63,5 +64,25 @@ public class NoteDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(drop_query);
 //        Create a new one
         onCreate(sqLiteDatabase);
+    }
+
+    /*
+    Before we insert the note data into the database, create a function that can save the note and its components
+    The 'note' parameter already has the Title, Content, Date and Time details of the created note.
+     */
+    public long addNote(Note note){
+//        Add data to the SQLite Database
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+//        Set the values of the Note in a way that can be saved
+        ContentValues contentValues = new ContentValues();
+//        Create a key-value pairing for all the fields
+        contentValues.put(KEY_TITLE, note.getTitle());
+        contentValues.put(KEY_CONTENT, note.getContent());
+        contentValues.put(KEY_DATE, note.getDate());
+        contentValues.put(KEY_TIME, note.getTime());
+//        If the data is inserted successfully return the id/ If an error occurs the id becomes -1
+        long ID = sqLiteDatabase.insert(DATABASE_TABLE, null, contentValues);
+
+        return ID;
     }
 }

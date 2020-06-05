@@ -18,6 +18,9 @@ public class AddNoteActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     EditText mEditTextNoteTitle, mEditTextNoteContent;
+    private String mCurrentDate;
+    private String mCurrentTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +61,10 @@ public class AddNoteActivity extends AppCompatActivity {
 
 //        Get the time and date for the Note Display
         Calendar calendar = Calendar.getInstance();
-        String currentDate = formatDateOrTime(calendar.get(Calendar.DAY_OF_WEEK)) + "/"
+        mCurrentDate = formatDateOrTime(calendar.get(Calendar.DAY_OF_WEEK)) + "/"
                 + formatDateOrTime(calendar.get(Calendar.MONTH)+1) + "/"
                 + calendar.get(Calendar.YEAR);
-        String currentTime = formatDateOrTime(calendar.get(Calendar.HOUR)) + ":"
+        mCurrentTime = formatDateOrTime(calendar.get(Calendar.HOUR)) + ":"
                 + formatDateOrTime(calendar.get(Calendar.MINUTE));
     }
 
@@ -83,7 +86,15 @@ public class AddNoteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save_menu_item){
-//            Store the data
+//            Create a NEW NOTE (using the constructor from Note.class)
+//            Store the data from the User interface - Title, Content, Date and Time
+            Note note = new Note(mEditTextNoteTitle.getText().toString(),
+                    mEditTextNoteContent.getText().toString(),
+                    mCurrentDate, mCurrentTime);
+//            Create an instance of the NoteDatabase class and use the 'addNote' method which takes in 1 argument - a NOTE
+            NoteDatabase noteDatabase = new NoteDatabase(this);
+            noteDatabase.addNote(note);
+
         } else {
 //            Delete the data
         }
