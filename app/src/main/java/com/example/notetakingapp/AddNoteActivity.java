@@ -72,4 +72,21 @@ public class AddNoteActivity extends AppCompatActivity {
             return String.valueOf(time);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_activity_add_note, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.save_menu_item){
+//            Store the data
+        } else {
+//            Delete the data
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
