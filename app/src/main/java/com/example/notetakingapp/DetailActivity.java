@@ -27,7 +27,13 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Long id = intent.getLongExtra(EXTRA_INTENT_FROM_ADAPTER_ID, 0);
 
-        Toast.makeText(this, "ID is " + id, Toast.LENGTH_SHORT).show();
+//        Obtain Instance of the Database
+        NoteDatabase database = new NoteDatabase(this);
+//        Create a new Note Object from the Id passed in, find the appropriate note
+        Note note = database.getNote(id);
+        Toast.makeText(this, "Title is " + note.getTitle(), Toast.LENGTH_SHORT).show();
+
+//        Toast.makeText(this, "ID is " + id, Toast.LENGTH_SHORT).show();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
