@@ -90,7 +90,7 @@ public class NoteDatabase extends SQLiteOpenHelper {
         return ID;
     }
 
-    public Note getNote(long id){
+    public Note getNote(Long id){
         /*
         This method returns a single note
          */
@@ -100,7 +100,7 @@ public class NoteDatabase extends SQLiteOpenHelper {
 //        To Read from a database we need to run "SELECT * FROM TABLE NAME WHERE ID=id"
         Cursor cursor = sqLiteDatabase.query(DATABASE_TABLE,
                 new String[]{KEY_ID, KEY_TITLE, KEY_CONTENT, KEY_DATE, KEY_TIME},
-                KEY_ID+"?", new String[]{(String.valueOf(id))},
+                KEY_ID+"=?", new String[]{(String.valueOf(id))},
                 null, null, null);
 //        The Cursor object always starts at the position -1. Move it to the first position
         if (cursor != null)
