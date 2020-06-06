@@ -10,10 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
-
+    TextView mTextViewDetails;
     String EXTRA_INTENT_FROM_ADAPTER_ID = "EXTRA_ID";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,12 @@ public class DetailActivity extends AppCompatActivity {
         NoteDatabase database = new NoteDatabase(this);
 //        Create a new Note Object from the Id passed in, find the appropriate note
         Note note = database.getNote(id);
+
+//        Change the Action Bar to have the same title as the note
+        getSupportActionBar().setTitle(note.getTitle());
+//        Pass in the content of note to the text view in the content_detail.xml
+        mTextViewDetails = findViewById(R.id.tvDetails);
+        mTextViewDetails.setText(note.getContent());
         Toast.makeText(this, "Title is " + note.getTitle(), Toast.LENGTH_SHORT).show();
 
 //        Toast.makeText(this, "ID is " + id, Toast.LENGTH_SHORT).show();
