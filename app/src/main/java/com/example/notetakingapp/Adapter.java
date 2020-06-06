@@ -1,10 +1,12 @@
 package com.example.notetakingapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,11 +41,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         String title = notes.get(position).getTitle();
         String dateCreated = notes.get(position).getDate();
         String timeCreated = notes.get(position).getTime();
+//        Adding a variable to hold the id from the notes
+        long ID = notes.get(position).getId();
 
 //        Bind the data above to the ViewHolder
         holder.holderNoteTitle.setText(title);
         holder.holderNoteDate.setText(dateCreated);
         holder.holderNoteTime.setText(timeCreated);
+//        Bind the data for the id
+        holder.holderNoteID.setText(String.valueOf(ID));
     }
 
     @Override
@@ -56,12 +62,27 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         TextView holderNoteTitle;
         TextView holderNoteDate;
         TextView holderNoteTime;
-        public ViewHolder(@NonNull View itemView) {
+//        Extra variable for the ID
+        TextView holderNoteID;
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 //        References to the views
             holderNoteTitle = itemView.findViewById(R.id.tvNoteTitle);
             holderNoteDate = itemView.findViewById(R.id.tvNoteDateCreated);
             holderNoteTime = itemView.findViewById(R.id.tvNoteTimeCreated);
+//            Extra reference for the id
+            holderNoteID = itemView.findViewById(R.id.listId);
+
+//            Set on click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    Pass an intent with the ID as an extra
+                    Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                    intent.putExtra("EXTRA_ID", notes.get(getAdapterPosition()).getId());
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
