@@ -42,7 +42,7 @@ public class NoteDatabase extends SQLiteOpenHelper {
         We translate SQLite queries into Java strings
          */
         String create_query = "CREATE TABLE " + DATABASE_TABLE
-                + "(" + KEY_ID + " INT PRIMARY KEY, "
+                + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_TITLE +" TEXT, "
                 + KEY_CONTENT+" TEXT, "
                 + KEY_DATE + " TEXT, "
