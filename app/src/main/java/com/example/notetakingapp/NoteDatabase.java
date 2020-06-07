@@ -121,7 +121,7 @@ public class NoteDatabase extends SQLiteOpenHelper {
 //        Create a List to store all the Notes that will be produced
         List<Note> listNotes = new ArrayList<>();
 //        Create a RAW SQL Query to read all items in the database
-        String rawQuery = "SELECT * FROM " + DATABASE_TABLE;
+        String rawQuery = "SELECT * FROM " + DATABASE_TABLE + " ORDER BY " + KEY_ID + " DESC";
 //        Use a cursor to obtain all the rows
         Cursor cursor = sqLiteDatabase.rawQuery(rawQuery, null);
 //        If cursor is null - move to first anyway
