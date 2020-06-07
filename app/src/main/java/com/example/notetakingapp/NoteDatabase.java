@@ -145,4 +145,13 @@ public class NoteDatabase extends SQLiteOpenHelper {
 //        Return the list with all the Notes
         return listNotes;
     }
+
+    public void deleteNote(Long id){
+        /*
+        This method deletes a note from the database
+         */
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(DATABASE_TABLE, KEY_ID +" =?", new String[]{String.valueOf(id)});
+        sqLiteDatabase.close();
+    }
 }

@@ -20,6 +20,9 @@ import android.widget.Toast;
 public class DetailActivity extends AppCompatActivity {
     TextView mTextViewDetails;
     String EXTRA_INTENT_FROM_ADAPTER_ID = "EXTRA_ID";
+    private NoteDatabase mDatabase;
+    private Note mNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,25 +36,29 @@ public class DetailActivity extends AppCompatActivity {
         Long id = intent.getLongExtra(EXTRA_INTENT_FROM_ADAPTER_ID, 0);
 
 //        Obtain Instance of the Database
-        NoteDatabase database = new NoteDatabase(this);
+        mDatabase = new NoteDatabase(this);
 //        Create a new Note Object from the Id passed in, find the appropriate note
-        Note note = database.getNote(id);
+        mNote = mDatabase.getNote(id);
 
 //        Change the Action Bar to have the same title as the note
-        getSupportActionBar().setTitle(note.getTitle());
+        getSupportActionBar().setTitle(mNote.getTitle());
 //        Pass in the content of note to the text view in the content_detail.xml
         mTextViewDetails = findViewById(R.id.tvDetails);
-        mTextViewDetails.setText(note.getContent());
-        Toast.makeText(this, "Title is " + note.getTitle(), Toast.LENGTH_SHORT).show();
+        mTextViewDetails.setText(mNote.getContent());
+        Toast.makeText(this, "Title is " + mNote.getTitle(), Toast.LENGTH_SHORT).show();
 
 //        Toast.makeText(this, "ID is " + id, Toast.LENGTH_SHORT).show();
 
+//        Delete the note and return the user to the MainActivity
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                mDatabase.deleteNote(mNote.getId());
+                Toast.makeText(getApplicationContext(),
+                        "Note title " + mNote.getTitle() + "has been deleted",
+                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }
