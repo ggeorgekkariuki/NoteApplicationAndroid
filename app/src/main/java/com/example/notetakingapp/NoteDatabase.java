@@ -154,4 +154,19 @@ public class NoteDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.delete(DATABASE_TABLE, KEY_ID +" =?", new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
     }
+
+    public int updateNote(Note note){
+//        Create a database instance
+        SQLiteDatabase database = this.getWritableDatabase();
+//        Use content values
+        ContentValues contentValues = new ContentValues();
+//        Save data into content values with key-value pairs
+        contentValues.put(KEY_TITLE, note.getTitle());
+        contentValues.put(KEY_CONTENT, note.getContent());
+        contentValues.put(KEY_DATE, note.getDate());
+        contentValues.put(KEY_TIME, note.getTime());
+//        Use the SQL Update method
+        return database.update(DATABASE_TABLE, contentValues, KEY_ID+"=?",
+                new String[]{(String.valueOf(note.getId()))});
+    }
 }

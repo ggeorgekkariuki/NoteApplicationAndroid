@@ -35,8 +35,8 @@ public class AddNoteActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        References to the EditTexts in the layout
-        mEditTextNoteTitle = findViewById(R.id.editTextNoteTitle);
-        mEditTextNoteContent = findViewById(R.id.editTextNoteContent);
+        mEditTextNoteTitle = findViewById(R.id.etNoteTitle);
+        mEditTextNoteContent = findViewById(R.id.etNoteContent);
 
 //        Listen to the Note Title edit text and change the toolbar to the title
         mEditTextNoteTitle.addTextChangedListener(new TextWatcher() {

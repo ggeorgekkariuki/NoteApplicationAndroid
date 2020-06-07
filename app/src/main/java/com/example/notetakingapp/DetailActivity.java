@@ -73,6 +73,10 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.edit_menu_item){
+//            Start the EditActivity, send the ID as an extra
+            Intent intent = new Intent(this, EditActivity.class);
+            intent.putExtra("EXTRA_ID", mNote.getId());
+            startActivity(intent);
 
         }
         return super.onOptionsItemSelected(item);
